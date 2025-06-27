@@ -27,6 +27,7 @@ export default function SkillsSection() {
         { name: "Node.js" },
         { name: "PHP" },
         { name: "CodeIgniter" },
+        { name: "ExpressJS" },
       ],
     },
     {
@@ -37,6 +38,8 @@ export default function SkillsSection() {
         { name: "MySQL" },
         { name: "PostgreSQL"},
         { name: "Git/GitHub" },
+        { name: "Firebase" },
+        { name: "Supabase" },
       ],
     },
     {
