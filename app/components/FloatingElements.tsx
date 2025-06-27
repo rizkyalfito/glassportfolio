@@ -15,89 +15,73 @@ export default function FloatingElements() {
   }, [])
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Animated Background Gradient */}
+    <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+      {/* Simplified Background Gradient */}
       <motion.div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-20"
         animate={{
           background: [
-            "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)",
-            "radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.3) 0%, transparent 50%)",
-            "radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)",
-            "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
+            "radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 70%)",
+            "radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
           ],
         }}
-        transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+        transition={{ 
+          duration: 30, 
+          repeat: Infinity, 
+          ease: "linear",
+          repeatType: "reverse"
+        }}
       />
 
-      {/* Floating Glass Orbs */}
-      {[...Array(8)].map((_, i) => (
+      {/* Reduced Floating Orbs - Only 3 instead of 8 */}
+      {[...Array(3)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-32 h-32 rounded-full bg-gradient-to-br from-white/20 to-blue-500/20 dark:from-white/10 dark:to-blue-400/10 backdrop-blur-xl border border-white/30 dark:border-white/20"
+          className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-white/10 to-blue-500/10 dark:from-white/5 dark:to-blue-400/5 backdrop-blur-sm border border-white/20 dark:border-white/10"
           animate={{
-            x: [0, 100, -50, 0],
-            y: [0, -100, 50, 0],
-            scale: [1, 1.2, 0.8, 1],
-            rotate: [0, 180, 360],
+            y: [0, -30, 0],
+            x: [0, 20, -20, 0],
+            scale: [1, 1.1, 1],
           }}
           transition={{
-            duration: 15 + i * 2,
-            repeat: Number.POSITIVE_INFINITY,
+            duration: 20 + i * 5,
+            repeat: Infinity,
             ease: "easeInOut",
+            delay: i * 2,
           }}
           style={{
-            left: `${10 + i * 12}%`,
-            top: `${10 + i * 8}%`,
+            left: `${20 + i * 30}%`,
+            top: `${30 + i * 20}%`,
           }}
         />
       ))}
 
-      {/* Geometric Shapes */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={`geo-${i}`}
-          className="absolute w-16 h-16 bg-gradient-to-br from-purple-500/20 to-pink-500/20 dark:from-purple-400/10 dark:to-pink-400/10 backdrop-blur-sm border border-white/20"
-          style={{
-            clipPath:
-              i % 2 === 0
-                ? "polygon(50% 0%, 0% 100%, 100% 100%)"
-                : "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
-            left: `${20 + i * 15}%`,
-            top: `${20 + i * 10}%`,
-          }}
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 10 + i * 3,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-      ))}
-
-      {/* Mouse Follower */}
+      {/* Simplified Mouse Follower with reduced size and opacity */}
       <motion.div
-        className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-blue-400/10 to-purple-400/10 dark:from-blue-300/5 dark:to-purple-300/5 blur-3xl"
+        className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-blue-400/5 to-purple-400/5 dark:from-blue-300/3 dark:to-purple-300/3 blur-2xl"
         animate={{
-          x: mousePosition.x - 192,
-          y: mousePosition.y - 192,
+          x: mousePosition.x - 128,
+          y: mousePosition.y - 128,
         }}
-        transition={{ type: "spring", damping: 30, stiffness: 200 }}
+        transition={{ 
+          type: "spring", 
+          damping: 50, 
+          stiffness: 100,
+          mass: 0.5
+        }}
       />
 
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.01] dark:opacity-[0.02]">
         <div
           className="w-full h-full"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.3) 1px, transparent 1px)
+              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
             `,
-            backgroundSize: "50px 50px",
+            backgroundSize: "80px 80px",
           }}
         />
       </div>

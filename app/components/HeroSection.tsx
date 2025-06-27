@@ -220,7 +220,7 @@ export default function HeroSection() {
                   whileHover={{ scale: 1.1, rotate: -5 }}
                 >
                   <div className="text-center">
-                    <div className="text-xl font-bold">25+</div>
+                    <div className="text-xl font-bold">15+</div>
                     <div className="text-xs">Projects</div>
                   </div>
                 </motion.div>

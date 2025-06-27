@@ -12,11 +12,11 @@ export default function SkillsSection() {
       icon: <Code className="w-6 h-6" />,
       color: "from-blue-500 to-cyan-500",
       skills: [
-        { name: "JavaScript/TypeScript", years: "3+" },
-        { name: "React.js", years: "3+" },
-        { name: "Next.js", years: "2+" },
-        { name: "Tailwind CSS", years: "2+" },
-        { name: "Framer Motion", years: "1+" },
+        { name: "JavaScript/TypeScript" },
+        { name: "React.js" },
+        { name: "Next.js" },
+        { name: "Tailwind CSS" },
+        { name: "Framer Motion"},
       ],
     },
     {
@@ -24,11 +24,9 @@ export default function SkillsSection() {
       icon: <Server className="w-6 h-6" />,
       color: "from-green-500 to-emerald-500",
       skills: [
-        { name: "Node.js", years: "2+" },
-        { name: "API Development", years: "3+" },
-        { name: "PHP", years: "3+" },
-        { name: "CodeIgniter", years: "2+" },
-        { name: "RESTful APIs", years: "3+" },
+        { name: "Node.js" },
+        { name: "PHP" },
+        { name: "CodeIgniter" },
       ],
     },
     {
@@ -36,11 +34,9 @@ export default function SkillsSection() {
       icon: <Database className="w-6 h-6" />,
       color: "from-purple-500 to-pink-500",
       skills: [
-        { name: "MySQL", years: "3+" },
-        { name: "PostgreSQL", years: "1+" },
-        { name: "Git/GitHub", years: "3+" },
-        { name: "Docker", years: "1+" },
-        { name: "AWS", years: "1+" },
+        { name: "MySQL" },
+        { name: "PostgreSQL"},
+        { name: "Git/GitHub" },
       ],
     },
     {
@@ -48,11 +44,11 @@ export default function SkillsSection() {
       icon: <Palette className="w-6 h-6" />,
       color: "from-pink-500 to-rose-500",
       skills: [
-        { name: "UI/UX Design", years: "2+" },
-        { name: "Figma", years: "2+" },
-        { name: "Canva", years: "3+" },
-        { name: "Responsive Design", years: "3+" },
-        { name: "Accessibility", years: "2+" },
+        { name: "UI/UX Design" },
+        { name: "Figma" },
+        { name: "Canva" },
+        { name: "Responsive Design" },
+        { name: "Accessibility" },
       ],
     },
     {
@@ -60,11 +56,9 @@ export default function SkillsSection() {
       icon: <Globe className="w-6 h-6" />,
       color: "from-orange-500 to-red-500",
       skills: [
-        { name: "Progressive Web Apps", years: "2+" },
-        { name: "Service Workers", years: "1+" },
-        { name: "Web Performance", years: "2+" },
-        { name: "SEO Optimization", years: "2+" },
-        { name: "Web Security", years: "1+" },
+        { name: "Progressive Web Apps" },
+        { name: "Web Performance" },
+        { name: "SEO Optimization" },
       ],
     },
     {
@@ -72,11 +66,10 @@ export default function SkillsSection() {
       icon: <Users className="w-6 h-6" />,
       color: "from-indigo-500 to-purple-500",
       skills: [
-        { name: "Team Leadership", years: "2+" },
-        { name: "Project Management", years: "2+" },
-        { name: "Communication", years: "3+" },
-        { name: "Problem Solving", years: "3+" },
-        { name: "Mentoring", years: "1+" },
+        { name: "Team Leadership" },
+        { name: "Project Management" },
+        { name: "Communication" },
+        { name: "Problem Solving" },
       ],
     },
   ]
@@ -179,12 +172,6 @@ export default function SkillsSection() {
                       whileHover={{ x: 5 }}
                     >
                       <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{skill.name}</span>
-                      <Badge
-                        variant="outline"
-                        className="text-xs border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400"
-                      >
-                        {skill.years}
-                      </Badge>
                     </motion.div>
                   ))}
                 </CardContent>

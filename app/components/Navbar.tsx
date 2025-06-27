@@ -30,6 +30,24 @@ export default function Navbar() {
     { href: "#contact", label: "Contact" },
   ]
 
+  const handleNavClick = (href: string) => {
+    setIsOpen(false)
+    
+    // Add small delay to ensure menu closes first
+    setTimeout(() => {
+      const targetId = href.replace('#', '')
+      const targetElement = document.getElementById(targetId)
+      
+      if (targetElement) {
+        const offsetTop = targetElement.offsetTop - 80 // Account for navbar height
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        })
+      }
+    }, 100)
+  }
+
   return (
     <motion.nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
@@ -76,10 +94,10 @@ export default function Navbar() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             {navItems.map((item, index) => (
-              <motion.a
+              <motion.button
                 key={item.href}
-                href={item.href}
-                className="relative text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium text-sm group"
+                onClick={() => handleNavClick(item.href)}
+                className="relative text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium text-sm group bg-transparent border-none cursor-pointer"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
@@ -92,7 +110,7 @@ export default function Navbar() {
                   whileHover={{ scaleX: 1 }}
                   transition={{ duration: 0.3 }}
                 />
-              </motion.a>
+              </motion.button>
             ))}
 
             {/* Theme Toggle */}
@@ -218,18 +236,18 @@ export default function Navbar() {
           >
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item, index) => (
-                <motion.a
+                <motion.button
                   key={item.href}
-                  href={item.href}
-                  className="block text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => handleNavClick(item.href)}
+                  className="block w-full text-left text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium bg-transparent border-none cursor-pointer p-2 rounded-lg hover:bg-white/50 dark:hover:bg-slate-800/50"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   whileHover={{ x: 5 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   {item.label}
-                </motion.a>
+                </motion.button>
               ))}
             </div>
           </motion.div>

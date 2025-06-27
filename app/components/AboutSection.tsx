@@ -16,26 +16,20 @@ export default function AboutSection() {
     {
       icon: Award,
       label: "Projects Completed",
-      value: "25+",
+      value: "15+",
       detail: "Successful Delivery",
       color: "from-purple-500 to-pink-500",
     },
     {
       icon: Users,
       label: "Happy Clients",
-      value: "15+",
+      value: "10+",
       detail: "Satisfied Partners",
       color: "from-green-500 to-emerald-500",
     },
   ]
 
   const highlights = [
-    {
-      icon: Zap,
-      title: "Performance Focused",
-      desc: "Optimized applications with 95+ PageSpeed scores",
-      color: "text-yellow-500",
-    },
     {
       icon: Users,
       title: "Team Leadership",
