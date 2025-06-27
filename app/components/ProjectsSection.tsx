@@ -12,16 +12,15 @@ export default function ProjectsSection() {
     {
       title: "Stress Management Web App",
       description:
-        'Advanced web application for stress level assessment using PSS (Perceived Stress "Advanced web application for stress level assessment using PSS (Perceived Stress Scale) methodology with Next.js and modern UI/UX design.',
-      image: "/placeholder.svg?height=300&width=400",
+        'Advanced web application for stress level assessment using PSS (Perceived Stress Scale) methodology with Next.js and modern UI/UX design.',
+      image: "/image.png",
       technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "API Integration"],
       year: "2024",
       status: "Featured",
       category: "Web Application",
-      stats: { stars: 24, forks: 8, views: "1.2k" },
       links: {
-        demo: "#",
-        github: "#",
+        demo: "https://nextjs-stress-checker.vercel.app/",
+        github: "https://github.com/rizkyalfito/nextjs-stress-checker",
       },
       gradient: "from-blue-500 to-purple-600",
     },
@@ -29,15 +28,14 @@ export default function ProjectsSection() {
       title: "Thesisprint.id Platform",
       description:
         "Comprehensive platform for thesis writing and consultation services with user management, payment integration, and real-time collaboration features.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/thesisprint.png",
       technologies: ["Next.js", "React", "Node.js", "PostgreSQL", "Stripe", "Socket.io"],
       year: "2024",
       status: "Production",
       category: "SaaS Platform",
-      stats: { stars: 18, forks: 5, views: "890" },
       links: {
-        demo: "#",
-        github: "#",
+        demo: "https://thesisprint.id",
+        github: null, // Set to null instead of "#"
       },
       gradient: "from-green-500 to-emerald-600",
     },
@@ -45,15 +43,14 @@ export default function ProjectsSection() {
       title: "Restaurant Catalog PWA",
       description:
         "Progressive Web App for restaurant discovery with offline capabilities, advanced search, and social features for food enthusiasts.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/easter.png",
       technologies: ["JavaScript", "PWA", "Service Workers", "IndexedDB", "Web APIs"],
       year: "2023",
       status: "Open Source",
       category: "Progressive Web App",
-      stats: { stars: 32, forks: 12, views: "2.1k" },
       links: {
-        demo: "#",
-        github: "#",
+        demo: "https://easter-restaurant.vercel.app", 
+        github:"https://github.com/rizkyalfito/easter",
       },
       gradient: "from-purple-500 to-pink-600",
     },
@@ -61,15 +58,14 @@ export default function ProjectsSection() {
       title: "Soulution Stress Management",
       description:
         "Collaborative capstone project for mental health management with team of 5 developers, featuring psychological assessments and wellness tracking.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/soulution.png",
       technologies: ["HTML5", "CSS3", "JavaScript", "Chart.js", "Local Storage"],
       year: "2023",
       status: "Capstone",
       category: "Health Tech",
-      stats: { stars: 15, forks: 6, views: "650" },
       links: {
-        demo: "#",
-        github: "#",
+        demo: null, // Set to null instead of "#"
+        github: "https://github.com/rizkyalfito/soulution",
       },
       gradient: "from-orange-500 to-red-600",
     },
@@ -82,10 +78,9 @@ export default function ProjectsSection() {
       year: "2022",
       status: "Completed",
       category: "Static Website",
-      stats: { stars: 9, forks: 3, views: "420" },
       links: {
-        demo: "#",
-        github: "#",
+        demo: null, // Set to null instead of "#"
+        github: null, // Set to null instead of "#"
       },
       gradient: "from-cyan-500 to-blue-600",
     },
@@ -98,10 +93,9 @@ export default function ProjectsSection() {
       year: "2018",
       status: "Legacy",
       category: "Management System",
-      stats: { stars: 6, forks: 2, views: "280" },
       links: {
-        demo: "#",
-        github: "#",
+        demo: null, // Set to null instead of "#"
+        github: null, // Set to null instead of "#"
       },
       gradient: "from-indigo-500 to-purple-600",
     },
@@ -123,6 +117,12 @@ export default function ProjectsSection() {
         return "bg-gradient-to-r from-amber-400 to-yellow-600 text-white"
       default:
         return "bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300"
+    }
+  }
+
+  const handleLinkClick = (url: string | null) => {
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer')
     }
   }
 
@@ -186,15 +186,9 @@ export default function ProjectsSection() {
                         <div className="flex items-center space-x-4">
                           <div className="flex items-center space-x-1">
                             <Star className="w-4 h-4" />
-                            <span>{project.stats.stars}</span>
                           </div>
                           <div className="flex items-center space-x-1">
                             <GitFork className="w-4 h-4" />
-                            <span>{project.stats.forks}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Eye className="w-4 h-4" />
-                            <span>{project.stats.views}</span>
                           </div>
                         </div>
                       </div>
@@ -287,20 +281,43 @@ export default function ProjectsSection() {
                     transition={{ duration: 0.4, delay: 0.7 }}
                     viewport={{ once: true }}
                   >
-                    <motion.div className="flex-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    {/* Live Demo Button */}
+                    <motion.div 
+                      className="flex-1" 
+                      whileHover={project.links.demo ? { scale: 1.05 } : {}} 
+                      whileTap={project.links.demo ? { scale: 0.95 } : {}}
+                    >
                       <Button
                         size="sm"
-                        className={`w-full bg-gradient-to-r ${project.gradient} text-white hover:opacity-90 shadow-lg`}
+                        disabled={!project.links.demo}
+                        onClick={() => handleLinkClick(project.links.demo)}
+                        className={`w-full ${
+                          project.links.demo 
+                            ? `bg-gradient-to-r ${project.gradient} text-white hover:opacity-90 shadow-lg cursor-pointer` 
+                            : 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                        }`}
                       >
                         <ExternalLink className="w-4 h-4 mr-2" />
                         Live Demo
                       </Button>
                     </motion.div>
-                    <motion.div className="flex-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+
+                    {/* GitHub Button */}
+                    <motion.div 
+                      className="flex-1" 
+                      whileHover={project.links.github ? { scale: 1.05 } : {}} 
+                      whileTap={project.links.github ? { scale: 0.95 } : {}}
+                    >
                       <Button
                         size="sm"
                         variant="outline"
-                        className="w-full bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border-white/20 dark:border-slate-700/50 hover:bg-white/80 dark:hover:bg-slate-700/80"
+                        disabled={!project.links.github}
+                        onClick={() => handleLinkClick(project.links.github)}
+                        className={`w-full ${
+                          project.links.github 
+                            ? 'bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border-white/20 dark:border-slate-700/50 hover:bg-white/80 dark:hover:bg-slate-700/80 cursor-pointer' 
+                            : 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 border-gray-300 dark:border-gray-600 cursor-not-allowed'
+                        }`}
                       >
                         <Github className="w-4 h-4 mr-2" />
                         Source

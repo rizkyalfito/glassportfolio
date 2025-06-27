@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -9,6 +9,10 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin, Linkedin, Github, Send, MessageCircle, Clock, User } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import emailjs from '@emailjs/browser'
+
+// Initialize EmailJS with your public key
+emailjs.init('HKJLWLBMQmbwc4r0I')
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -19,21 +23,42 @@ export default function ContactSection() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
+  const form = useRef<HTMLFormElement>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try {
+      // Send email using EmailJS
+      const result = await emailjs.sendForm(
+        'service_svcqm8b',    // Your Service ID
+        'template_15dycoc',   // Your Template ID
+        form.current!,        // Form reference
+        'HKJLWLBMQmbwc4r0I'   // Your Public Key
+      )
 
-    toast({
-      title: "Message Sent Successfully!",
-      description: "Thank you for your message. I'll get back to you within 24 hours!",
-    })
+      console.log('Email sent successfully:', result.text)
+      
+      toast({
+        title: "Message Sent Successfully! 🎉",
+        description: "Thank you for your message. I'll get back to you within 24 hours!",
+      })
 
-    setFormData({ name: "", email: "", subject: "", message: "" })
-    setIsSubmitting(false)
+      // Reset form
+      setFormData({ name: "", email: "", subject: "", message: "" })
+      
+    } catch (error) {
+      console.error('Failed to send email:', error)
+      
+      toast({
+        title: "Failed to Send Message ❌",
+        description: "Something went wrong. Please try again or contact me directly via email.",
+        variant: "destructive"
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -226,7 +251,7 @@ export default function ContactSection() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                   <motion.div
                     className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                     initial={{ opacity: 0, y: 20 }}
@@ -320,7 +345,7 @@ export default function ContactSection() {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-3 shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-3 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         size="lg"
                       >
                         {isSubmitting ? (

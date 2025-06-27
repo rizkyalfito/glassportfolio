@@ -110,7 +110,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.0 }}
               >
-                Passionate web developer specializing in cutting-edge technologies. I transform ideas into stunning,
+                Passionatess web developer specializing in cutting-edge technologies. I transform ideas into stunning,
                 high-performance web applications that deliver exceptional user experiences.
               </motion.p>
             </div>
@@ -131,10 +131,16 @@ export default function Hero() {
                 </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="outline" size="lg" className="border-2">
-                  <Download className="w-4 h-4 mr-2" />
-                  Download CV
-                </Button>
+                <a 
+                  href="/rizky-alfito-hadi_cv.pdf" 
+                  download="rizky-alfito-hadi_cv.pdf"
+                  className="inline-block"
+                >
+                  <Button variant="outline" size="lg" className="border-2">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download CV
+                  </Button>
+                </a>
               </motion.div>
             </motion.div>
 

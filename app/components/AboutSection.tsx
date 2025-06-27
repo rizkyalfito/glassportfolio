@@ -27,7 +27,6 @@ export default function AboutSection() {
       detail: "Satisfied Partners",
       color: "from-green-500 to-emerald-500",
     },
-    { icon: Star, label: "GitHub Stars", value: "100+", detail: "Open Source", color: "from-orange-500 to-red-500" },
   ]
 
   const highlights = [

@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
 import { Code, Database, Globe, Palette, Server, Users, Zap, Award, Cpu } from "lucide-react"
 
 export default function SkillsSection() {
@@ -13,11 +12,11 @@ export default function SkillsSection() {
       icon: <Code className="w-6 h-6" />,
       color: "from-blue-500 to-cyan-500",
       skills: [
-        { name: "JavaScript/TypeScript", level: 95, years: "3+" },
-        { name: "React.js", level: 90, years: "3+" },
-        { name: "Next.js", level: 88, years: "2+" },
-        { name: "Tailwind CSS", level: 92, years: "2+" },
-        { name: "Framer Motion", level: 85, years: "1+" },
+        { name: "JavaScript/TypeScript", years: "3+" },
+        { name: "React.js", years: "3+" },
+        { name: "Next.js", years: "2+" },
+        { name: "Tailwind CSS", years: "2+" },
+        { name: "Framer Motion", years: "1+" },
       ],
     },
     {
@@ -25,11 +24,11 @@ export default function SkillsSection() {
       icon: <Server className="w-6 h-6" />,
       color: "from-green-500 to-emerald-500",
       skills: [
-        { name: "Node.js", level: 85, years: "2+" },
-        { name: "API Development", level: 88, years: "3+" },
-        { name: "PHP", level: 80, years: "3+" },
-        { name: "CodeIgniter", level: 75, years: "2+" },
-        { name: "RESTful APIs", level: 90, years: "3+" },
+        { name: "Node.js", years: "2+" },
+        { name: "API Development", years: "3+" },
+        { name: "PHP", years: "3+" },
+        { name: "CodeIgniter", years: "2+" },
+        { name: "RESTful APIs", years: "3+" },
       ],
     },
     {
@@ -37,11 +36,11 @@ export default function SkillsSection() {
       icon: <Database className="w-6 h-6" />,
       color: "from-purple-500 to-pink-500",
       skills: [
-        { name: "MySQL", level: 85, years: "3+" },
-        { name: "PostgreSQL", level: 80, years: "1+" },
-        { name: "Git/GitHub", level: 92, years: "3+" },
-        { name: "Docker", level: 70, years: "1+" },
-        { name: "AWS", level: 65, years: "1+" },
+        { name: "MySQL", years: "3+" },
+        { name: "PostgreSQL", years: "1+" },
+        { name: "Git/GitHub", years: "3+" },
+        { name: "Docker", years: "1+" },
+        { name: "AWS", years: "1+" },
       ],
     },
     {
@@ -49,11 +48,11 @@ export default function SkillsSection() {
       icon: <Palette className="w-6 h-6" />,
       color: "from-pink-500 to-rose-500",
       skills: [
-        { name: "UI/UX Design", level: 82, years: "2+" },
-        { name: "Figma", level: 85, years: "2+" },
-        { name: "Canva", level: 90, years: "3+" },
-        { name: "Responsive Design", level: 95, years: "3+" },
-        { name: "Accessibility", level: 80, years: "2+" },
+        { name: "UI/UX Design", years: "2+" },
+        { name: "Figma", years: "2+" },
+        { name: "Canva", years: "3+" },
+        { name: "Responsive Design", years: "3+" },
+        { name: "Accessibility", years: "2+" },
       ],
     },
     {
@@ -61,11 +60,11 @@ export default function SkillsSection() {
       icon: <Globe className="w-6 h-6" />,
       color: "from-orange-500 to-red-500",
       skills: [
-        { name: "Progressive Web Apps", level: 88, years: "2+" },
-        { name: "Service Workers", level: 85, years: "1+" },
-        { name: "Web Performance", level: 90, years: "2+" },
-        { name: "SEO Optimization", level: 85, years: "2+" },
-        { name: "Web Security", level: 78, years: "1+" },
+        { name: "Progressive Web Apps", years: "2+" },
+        { name: "Service Workers", years: "1+" },
+        { name: "Web Performance", years: "2+" },
+        { name: "SEO Optimization", years: "2+" },
+        { name: "Web Security", years: "1+" },
       ],
     },
     {
@@ -73,11 +72,11 @@ export default function SkillsSection() {
       icon: <Users className="w-6 h-6" />,
       color: "from-indigo-500 to-purple-500",
       skills: [
-        { name: "Team Leadership", level: 92, years: "2+" },
-        { name: "Project Management", level: 88, years: "2+" },
-        { name: "Communication", level: 90, years: "3+" },
-        { name: "Problem Solving", level: 95, years: "3+" },
-        { name: "Mentoring", level: 85, years: "1+" },
+        { name: "Team Leadership", years: "2+" },
+        { name: "Project Management", years: "2+" },
+        { name: "Communication", years: "3+" },
+        { name: "Problem Solving", years: "3+" },
+        { name: "Mentoring", years: "1+" },
       ],
     },
   ]
@@ -168,36 +167,24 @@ export default function SkillsSection() {
                     </CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3">
                   {category.skills.map((skill, i) => (
                     <motion.div
                       key={i}
-                      className="space-y-2"
+                      className="flex justify-between items-center p-3 bg-slate-50/50 dark:bg-slate-700/50 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-600/50 transition-all duration-300"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
                       viewport={{ once: true }}
+                      whileHover={{ x: 5 }}
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{skill.name}</span>
-                        <div className="flex items-center space-x-2">
-                          <Badge
-                            variant="outline"
-                            className="text-xs border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400"
-                          >
-                            {skill.years}
-                          </Badge>
-                          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">{skill.level}%</span>
-                        </div>
-                      </div>
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "100%" }}
-                        transition={{ duration: 1, delay: 0.5 + i * 0.1 }}
-                        viewport={{ once: true }}
+                      <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{skill.name}</span>
+                      <Badge
+                        variant="outline"
+                        className="text-xs border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400"
                       >
-                        <Progress value={skill.level} className="h-2 bg-slate-200 dark:bg-slate-700" />
-                      </motion.div>
+                        {skill.years}
+                      </Badge>
                     </motion.div>
                   ))}
                 </CardContent>

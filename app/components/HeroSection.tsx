@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Download, Github, Linkedin, Mail, Sparkles, Play } from "lucide-react"
 import Image from "next/image"
+import Link from "next/dist/client/link"
 
 export default function HeroSection() {
   return (
@@ -97,23 +98,38 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 1.6 }}
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg shadow-blue-500/25 border-0"
+              <Link 
+                  href="#about"
+                  className="inline-block"
+                  scroll={false}
                 >
-                  <Play className="w-4 h-4 mr-2" />
-                  Let's Work Together
-                </Button>
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg shadow-blue-500/25 border-0"
+                    onClick={() => {
+                      setTimeout(() => {
+                        document.getElementById('about')?.scrollIntoView({ 
+                          behavior: 'smooth' 
+                        })
+                      }, 100)
+                    }}
+                  >
+                    <Play className="w-4 h-4 mr-2" />
+                    Let's Work Together
+                  </Button>
+                </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border-white/20 dark:border-slate-700/50 hover:bg-white/80 dark:hover:bg-slate-700/80 shadow-lg"
+                <a 
+                  href="/rizky-alfito-hadi_cv.pdf" 
+                  download="rizky-alfito-hadi_cv.pdf"
+                  className="inline-block"
                 >
-                  <Download className="w-4 h-4 mr-2" />
-                  Download CV
-                </Button>
+                  <Button variant="outline" size="lg" className="border-2">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download CV
+                  </Button>
+                </a>
               </motion.div>
             </motion.div>
 
@@ -171,7 +187,7 @@ export default function HeroSection() {
               >
                 <div className="absolute inset-4 rounded-2xl overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=300&width=300"
+                    src="/ppp.jpg"
                     alt="Rizky Alfito Hadi"
                     width={300}
                     height={300}
