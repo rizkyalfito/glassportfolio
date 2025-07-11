@@ -14,7 +14,7 @@ export default function ProjectsSection() {
       description:
         'Advanced web application for stress level assessment using PSS (Perceived Stress Scale) methodology with Next.js and modern UI/UX design.',
       image: "/image.png",
-      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "API Integration"],
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
       year: "2024",
       status: "Featured",
       category: "Web Application",
@@ -29,13 +29,28 @@ export default function ProjectsSection() {
       description:
         "Comprehensive platform for thesis writing and consultation services with user management, payment integration, and real-time collaboration features.",
       image: "/thesisprint.png",
-      technologies: ["Next.js", "React", "Node.js", "PostgreSQL", "Stripe", "Socket.io"],
+      technologies: ["Next.js", "React", "TailwindCSS"],
       year: "2024",
       status: "Production",
       category: "SaaS Platform",
       links: {
         demo: "https://thesisprint.id",
         github: null,
+      },
+      gradient: "from-green-500 to-emerald-600",
+    },
+    {
+      title: "Desa Jayakerta Web",
+      description:
+        "Official village website for Desa Jayakerta with public information portal, UMKM Branding, news updates, and community engagement features built with React.js and Tailwind CSS.",
+      image: "/jayakerta.png",
+      technologies: ["React.js", "TailwindCSS", "Flowbite" ],
+      year: "2024",
+      status: "Production",
+      category: "Landing Page",
+      links: {
+        demo: "https://desa-jayakerta.vercel.app/",
+        github: "https://github.com/rizkyalfito/desa-jayakerta",
       },
       gradient: "from-green-500 to-emerald-600",
     },
@@ -59,7 +74,7 @@ export default function ProjectsSection() {
       description:
         "Collaborative capstone project for mental health management with team of 5 developers, featuring psychological assessments and wellness tracking.",
       image: "/soulution.png",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Chart.js", "Local Storage"],
+      technologies: ["HTML5", "CSS3", "JavaScript", "MySQL","PWA","Service Workers"],
       year: "2023",
       status: "Capstone",
       category: "Health Tech",
@@ -74,7 +89,7 @@ export default function ProjectsSection() {
       description:
         "Elegant static website for bookstore with modern design, book catalog, and enhanced user experience for book lovers.",
       image: "/placeholder.svg?height=300&width=400",
-      technologies: ["HTML5", "CSS3", "JavaScript", "GSAP", "Responsive Design"],
+      technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Vanilla.js"],
       year: "2022",
       status: "Completed",
       category: "Static Website",

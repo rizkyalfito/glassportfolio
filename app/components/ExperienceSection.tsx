@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -115,7 +116,116 @@ export default function ExperienceSection() {
           </p>
         </motion.div>
 
-        <div className="space-y-6 xs:space-y-8">
+        {/* Desktop Layout: 2 columns for larger screens */}
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-10">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -3 }}
+              className="group"
+            >
+              <Card className="h-full bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <div className="flex items-start space-x-4 flex-1">
+                      <motion.div
+                        className={`p-4 rounded-2xl bg-gradient-to-br ${exp.gradient} text-white shadow-lg flex-shrink-0`}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {getIcon(exp.type)}
+                      </motion.div>
+                      <div className="flex-1 min-w-0">
+                        <CardTitle className="text-xl text-slate-900 dark:text-white mb-2 leading-tight">
+                          {exp.title}
+                        </CardTitle>
+                        <p className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-3 leading-tight">
+                          {exp.company}
+                        </p>
+                        <div className="flex flex-col space-y-1 text-sm text-slate-500 dark:text-slate-400">
+                          <div className="flex items-center space-x-2">
+                            <MapPin className="w-4 h-4 flex-shrink-0" />
+                            <span className="truncate">{exp.location}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Calendar className="w-4 h-4 flex-shrink-0" />
+                            <span>{exp.period}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <Badge className={`bg-gradient-to-r ${exp.gradient} text-white font-medium text-sm flex-shrink-0`}>
+                      {exp.type.charAt(0).toUpperCase() + exp.type.slice(1)}
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <ul className="space-y-3">
+                    {exp.description.map((desc, i) => (
+                      <li
+                        key={i}
+                        className="text-base text-slate-600 dark:text-slate-400 flex items-start leading-relaxed"
+                      >
+                        <span className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span className="flex-1">{desc}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="grid grid-cols-1 gap-6">
+                    <div>
+                      <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300 flex items-center">
+                        <Award className="w-4 h-4 mr-2 text-blue-500 flex-shrink-0" />
+                        Technologies & Skills
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.skills.map((skill, i) => (
+                          <motion.div
+                            key={i}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.1 }}
+                          >
+                            <Badge
+                              variant="secondary"
+                              className="text-xs bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1"
+                            >
+                              {skill}
+                            </Badge>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300 flex items-center">
+                        <Award className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
+                        Key Achievements
+                      </h4>
+                      <ul className="space-y-2">
+                        {exp.achievements.map((achievement, i) => (
+                          <li
+                            key={i}
+                            className="text-sm text-slate-600 dark:text-slate-400 flex items-start"
+                          >
+                            <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                            <span className="flex-1">{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile and Tablet Layout: Single column */}
+        <div className="lg:hidden space-y-6 xs:space-y-8">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
