@@ -91,16 +91,16 @@ export default function ExperienceSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
         >
           <motion.div
             className="inline-flex items-center space-x-2 px-4 py-2 bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 rounded-full shadow-lg mb-6"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true }}
           >
             <Calendar className="w-4 h-4 text-green-500" />
@@ -119,20 +119,20 @@ export default function ExperienceSection() {
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.01, y: -5 }}
+              whileHover={{ y: -3 }}
             >
-              <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden">
+              <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden">
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center space-x-4">
                       <motion.div
                         className={`p-4 rounded-2xl bg-gradient-to-br ${exp.gradient} text-white shadow-lg`}
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.2 }}
                       >
                         {getIcon(exp.type)}
                       </motion.div>
@@ -151,48 +151,26 @@ export default function ExperienceSection() {
                         </div>
                       </div>
                     </div>
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0.2 }}
-                      viewport={{ once: true }}
-                    >
-                      <Badge className={`bg-gradient-to-r ${exp.gradient} text-white font-medium`}>
-                        {exp.type.charAt(0).toUpperCase() + exp.type.slice(1)}
-                      </Badge>
-                    </motion.div>
+                    <Badge className={`bg-gradient-to-r ${exp.gradient} text-white font-medium`}>
+                      {exp.type.charAt(0).toUpperCase() + exp.type.slice(1)}
+                    </Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <motion.ul
-                    className="space-y-3"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    viewport={{ once: true }}
-                  >
+                  <ul className="space-y-3">
                     {exp.description.map((desc, i) => (
-                      <motion.li
+                      <li
                         key={i}
                         className="text-slate-600 dark:text-slate-400 flex items-start leading-relaxed"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
-                        viewport={{ once: true }}
                       >
                         <span className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                         {desc}
-                      </motion.li>
+                      </li>
                     ))}
-                  </motion.ul>
+                  </ul>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.6 }}
-                      viewport={{ once: true }}
-                    >
+                    <div>
                       <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300 flex items-center">
                         <Award className="w-4 h-4 mr-2 text-blue-500" />
                         Technologies & Skills
@@ -201,11 +179,8 @@ export default function ExperienceSection() {
                         {exp.skills.map((skill, i) => (
                           <motion.div
                             key={i}
-                            initial={{ opacity: 0, scale: 0 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.3, delay: 0.7 + i * 0.05 }}
-                            viewport={{ once: true }}
-                            whileHover={{ scale: 1.1 }}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.1 }}
                           >
                             <Badge
                               variant="secondary"
@@ -216,34 +191,25 @@ export default function ExperienceSection() {
                           </motion.div>
                         ))}
                       </div>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.8 }}
-                      viewport={{ once: true }}
-                    >
+                    <div>
                       <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300 flex items-center">
                         <Award className="w-4 h-4 mr-2 text-green-500" />
                         Key Achievements
                       </h4>
                       <ul className="space-y-1">
                         {exp.achievements.map((achievement, i) => (
-                          <motion.li
+                          <li
                             key={i}
                             className="text-sm text-slate-600 dark:text-slate-400 flex items-center"
-                            initial={{ opacity: 0, x: -10 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: 0.9 + i * 0.1 }}
-                            viewport={{ once: true }}
                           >
                             <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
                             {achievement}
-                          </motion.li>
+                          </li>
                         ))}
                       </ul>
-                    </motion.div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>

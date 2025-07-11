@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, Star, GitFork, Eye, Calendar } from "lucide-react"
+import { ExternalLink, Github, Star, Calendar } from "lucide-react"
 import Image from "next/image"
 
 export default function ProjectsSection() {
@@ -35,7 +35,7 @@ export default function ProjectsSection() {
       category: "SaaS Platform",
       links: {
         demo: "https://thesisprint.id",
-        github: null, // Set to null instead of "#"
+        github: null,
       },
       gradient: "from-green-500 to-emerald-600",
     },
@@ -64,7 +64,7 @@ export default function ProjectsSection() {
       status: "Capstone",
       category: "Health Tech",
       links: {
-        demo: null, // Set to null instead of "#"
+        demo: null,
         github: "https://github.com/rizkyalfito/soulution",
       },
       gradient: "from-orange-500 to-red-600",
@@ -79,8 +79,8 @@ export default function ProjectsSection() {
       status: "Completed",
       category: "Static Website",
       links: {
-        demo: null, // Set to null instead of "#"
-        github: null, // Set to null instead of "#"
+        demo: null,
+        github: null,
       },
       gradient: "from-cyan-500 to-blue-600",
     },
@@ -94,8 +94,8 @@ export default function ProjectsSection() {
       status: "Legacy",
       category: "Management System",
       links: {
-        demo: null, // Set to null instead of "#"
-        github: null, // Set to null instead of "#"
+        demo: null,
+        github: null,
       },
       gradient: "from-indigo-500 to-purple-600",
     },
@@ -131,16 +131,16 @@ export default function ProjectsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
         >
           <motion.div
             className="inline-flex items-center space-x-2 px-4 py-2 bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 rounded-full shadow-lg mb-6"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true }}
           >
             <Star className="w-4 h-4 text-yellow-500" />
@@ -160,16 +160,16 @@ export default function ProjectsSection() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
               viewport={{ once: true }}
-              whileHover={{ y: -10, scale: 1.02 }}
+              whileHover={{ y: -5 }}
               className="h-full"
             >
-              <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden h-full flex flex-col">
+              <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col">
                 <div className="relative overflow-hidden">
-                  <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
+                  <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
                     <Image
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
@@ -179,50 +179,23 @@ export default function ProjectsSection() {
                     />
                   </motion.div>
 
-                  {/* Overlay with stats */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center justify-between text-white text-sm">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex items-center space-x-1">
-                            <Star className="w-4 h-4" />
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <GitFork className="w-4 h-4" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Overlay with subtle hover effect */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-200" />
 
                   {/* Status Badge */}
                   <div className="absolute top-4 right-4">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0.2 }}
-                      viewport={{ once: true }}
-                    >
-                      <Badge className={`${getStatusColor(project.status)} font-medium`}>{project.status}</Badge>
-                    </motion.div>
+                    <Badge className={`${getStatusColor(project.status)} font-medium`}>{project.status}</Badge>
                   </div>
 
                   {/* Year Badge */}
                   <div className="absolute top-4 left-4">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                      viewport={{ once: true }}
+                    <Badge
+                      variant="outline"
+                      className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-white/20 dark:border-slate-700/50"
                     >
-                      <Badge
-                        variant="outline"
-                        className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-white/20 dark:border-slate-700/50"
-                      >
-                        <Calendar className="w-3 h-3 mr-1" />
-                        {project.year}
-                      </Badge>
-                    </motion.div>
+                      <Calendar className="w-3 h-3 mr-1" />
+                      {project.year}
+                    </Badge>
                   </div>
                 </div>
 
@@ -238,31 +211,16 @@ export default function ProjectsSection() {
                 </CardHeader>
 
                 <CardContent className="space-y-4 flex-1 flex flex-col">
-                  <motion.p
-                    className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-1"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 }}
-                    viewport={{ once: true }}
-                  >
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-1">
                     {project.description}
-                  </motion.p>
+                  </p>
 
-                  <motion.div
-                    className="flex flex-wrap gap-2"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.5 }}
-                    viewport={{ once: true }}
-                  >
+                  <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, i) => (
                       <motion.div
                         key={i}
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: 0.6 + i * 0.05 }}
-                        viewport={{ once: true }}
-                        whileHover={{ scale: 1.1 }}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.1 }}
                       >
                         <Badge
                           variant="secondary"
@@ -272,20 +230,14 @@ export default function ProjectsSection() {
                         </Badge>
                       </motion.div>
                     ))}
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    className="flex space-x-3 pt-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.7 }}
-                    viewport={{ once: true }}
-                  >
+                  <div className="flex space-x-3 pt-4">
                     {/* Live Demo Button */}
                     <motion.div 
                       className="flex-1" 
-                      whileHover={project.links.demo ? { scale: 1.05 } : {}} 
-                      whileTap={project.links.demo ? { scale: 0.95 } : {}}
+                      whileHover={project.links.demo ? { scale: 1.02 } : {}} 
+                      whileTap={project.links.demo ? { scale: 0.98 } : {}}
                     >
                       <Button
                         size="sm"
@@ -305,8 +257,8 @@ export default function ProjectsSection() {
                     {/* GitHub Button */}
                     <motion.div 
                       className="flex-1" 
-                      whileHover={project.links.github ? { scale: 1.05 } : {}} 
-                      whileTap={project.links.github ? { scale: 0.95 } : {}}
+                      whileHover={project.links.github ? { scale: 1.02 } : {}} 
+                      whileTap={project.links.github ? { scale: 0.98 } : {}}
                     >
                       <Button
                         size="sm"
@@ -323,7 +275,7 @@ export default function ProjectsSection() {
                         Source
                       </Button>
                     </motion.div>
-                  </motion.div>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>

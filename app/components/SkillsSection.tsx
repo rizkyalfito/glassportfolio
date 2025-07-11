@@ -113,16 +113,16 @@ export default function SkillsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           <motion.div
             className="inline-flex items-center space-x-2 px-4 py-2 bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 rounded-full shadow-lg mb-6"
-            initial={{ opacity: 0, scale: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             viewport={{ once: true }}
           >
             <Zap className="w-4 h-4 text-purple-500" />
@@ -142,19 +142,19 @@ export default function SkillsSection() {
           {skillCategories.map((category, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5, scale: 1.02 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              viewport={{ once: true, margin: "-50px" }}
+              whileHover={{ y: -3, scale: 1.01 }}
             >
-              <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
+              <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
                 <CardHeader>
                   <div className="flex items-center space-x-3">
                     <motion.div
                       className={`p-3 rounded-xl bg-gradient-to-br ${category.color} text-white shadow-lg`}
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
                     >
                       {category.icon}
                     </motion.div>
@@ -167,12 +167,12 @@ export default function SkillsSection() {
                   {category.skills.map((skill, i) => (
                     <motion.div
                       key={i}
-                      className="flex justify-between items-center p-3 bg-slate-50/50 dark:bg-slate-700/50 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-600/50 transition-all duration-300"
-                      initial={{ opacity: 0, x: -20 }}
+                      className="flex justify-between items-center p-3 bg-slate-50/50 dark:bg-slate-700/50 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-600/50 transition-all duration-200"
+                      initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+                      transition={{ duration: 0.3, delay: 0.1 + i * 0.03 }}
                       viewport={{ once: true }}
-                      whileHover={{ x: 5 }}
+                      whileHover={{ x: 2 }}
                     >
                       <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{skill.name}</span>
                     </motion.div>
@@ -185,10 +185,10 @@ export default function SkillsSection() {
 
         {/* Certifications */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true, margin: "-50px" }}
         >
           <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl">
             <CardHeader>
@@ -203,17 +203,17 @@ export default function SkillsSection() {
                 {certifications.map((cert, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-center space-x-4 p-6 bg-slate-50/50 dark:bg-slate-700/50 rounded-xl hover:bg-slate-100/50 dark:hover:bg-slate-600/50 transition-all duration-300"
-                    initial={{ opacity: 0, x: -30 }}
+                    className="flex items-center space-x-4 p-6 bg-slate-50/50 dark:bg-slate-700/50 rounded-xl hover:bg-slate-100/50 dark:hover:bg-slate-600/50 transition-all duration-200"
+                    initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 1.0 + index * 0.1 }}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
                     viewport={{ once: true }}
-                    whileHover={{ x: 5, scale: 1.02 }}
+                    whileHover={{ x: 3, scale: 1.005 }}
                   >
                     <motion.div
                       className={`p-3 bg-gradient-to-br ${cert.color} rounded-xl text-white shadow-lg`}
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
                     >
                       {cert.icon}
                     </motion.div>

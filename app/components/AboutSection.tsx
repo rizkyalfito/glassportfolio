@@ -55,16 +55,16 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           <motion.div
             className="inline-flex items-center space-x-2 px-4 py-2 bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 rounded-full shadow-lg mb-6"
-            initial={{ opacity: 0, scale: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             viewport={{ once: true }}
           >
             <Users className="w-4 h-4 text-blue-500" />
@@ -84,19 +84,19 @@ export default function AboutSection() {
           {/* Left side - Bio */}
           <motion.div
             className="space-y-8"
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, margin: "-50px" }}
           >
-            <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500">
+            <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-300">
               <CardContent className="p-8">
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4 mb-6">
                     <motion.div
                       className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/25"
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
                     >
                       <GraduationCap className="w-8 h-8 text-white" />
                     </motion.div>
@@ -143,8 +143,8 @@ export default function AboutSection() {
                       <div className="flex items-center space-x-2">
                         <motion.div
                           className="w-2 h-2 bg-green-500 rounded-full"
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                          animate={{ scale: [1, 1.1, 1] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
                         />
                         <p className="text-green-600 dark:text-green-400 font-medium">Available</p>
                       </div>
@@ -167,11 +167,11 @@ export default function AboutSection() {
                       key={index}
                       href={item.href}
                       className="flex items-center space-x-3 p-3 rounded-xl bg-slate-50/50 dark:bg-slate-700/50 hover:bg-slate-100/50 dark:hover:bg-slate-600/50 transition-colors group"
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                      transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
                       viewport={{ once: true }}
-                      whileHover={{ x: 5 }}
+                      whileHover={{ x: 3 }}
                     >
                       <item.icon className="w-5 h-5 text-blue-500 group-hover:text-blue-600 transition-colors" />
                       <span className="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
@@ -187,36 +187,36 @@ export default function AboutSection() {
           {/* Right side - Stats & Highlights */}
           <motion.div
             className="space-y-8"
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
           >
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-4">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
                   viewport={{ once: true }}
-                  whileHover={{ y: -5, scale: 1.02 }}
+                  whileHover={{ y: -3, scale: 1.01 }}
                 >
-                  <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
+                  <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
                     <CardContent className="p-6 text-center">
                       <motion.div
                         className={`w-12 h-12 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg`}
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.2 }}
                       >
                         <stat.icon className="w-6 h-6 text-white" />
                       </motion.div>
                       <motion.div
                         className="text-2xl font-poppins font-bold text-slate-900 dark:text-white mb-1"
-                        initial={{ scale: 0 }}
+                        initial={{ scale: 0.8 }}
                         whileInView={{ scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                        transition={{ duration: 0.3, delay: 0.4 + index * 0.05 }}
                         viewport={{ once: true }}
                       >
                         {stat.value}
@@ -241,11 +241,11 @@ export default function AboutSection() {
                     <motion.div
                       key={highlight.title}
                       className="p-4 rounded-xl bg-slate-50/50 dark:bg-slate-700/50 hover:bg-slate-100/50 dark:hover:bg-slate-600/50 transition-colors"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 15 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 1.0 + index * 0.1 }}
+                      transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
                       viewport={{ once: true }}
-                      whileHover={{ y: -2, scale: 1.02 }}
+                      whileHover={{ y: -1, scale: 1.005 }}
                     >
                       <highlight.icon className={`w-6 h-6 ${highlight.color} mb-2`} />
                       <h5 className="font-semibold text-slate-900 dark:text-white text-sm mb-1">{highlight.title}</h5>
