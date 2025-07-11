@@ -77,18 +77,18 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex justify-between items-center h-16 w-full max-w-full">
           {/* Logo */}
           <motion.div
-            className="flex items-center space-x-3 z-10"
+            className="flex items-center space-x-2 z-10 flex-shrink-0 min-w-0 max-w-[60%] sm:max-w-none"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <motion.div className="relative" whileHover={{ rotate: 360 }} transition={{ duration: 0.8 }}>
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/25">
-                <Code2 className="w-6 h-6 text-white" />
+            <motion.div className="relative flex-shrink-0" whileHover={{ rotate: 360 }} transition={{ duration: 0.8 }}>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/25">
+                <Code2 className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
               </div>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl blur-lg opacity-30"
@@ -96,11 +96,11 @@ export default function Navbar() {
                 transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
               />
             </motion.div>
-            <div className="font-poppins">
-              <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+            <div className="font-poppins min-w-0 flex-1">
+              <div className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent truncate">
                 Rizky Alfito
               </div>
-              <div className="text-xs text-slate-600 dark:text-slate-400 font-medium">Web Developer</div>
+              <div className="text-xs text-slate-600 dark:text-slate-400 font-medium truncate">Web Developer</div>
             </div>
           </motion.div>
 
@@ -152,28 +152,28 @@ export default function Navbar() {
             )}
           </motion.div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-2 z-10">
+          {/* Mobile menu button container - Fixed positioning with proper constraints */}
+          <div className="md:hidden flex items-center gap-2 z-10 flex-shrink-0">
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-colors duration-200"
+                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-colors duration-200 flex-shrink-0"
               >
                 {theme === "dark" ? (
-                  <Moon className="w-4 h-4 text-slate-700 dark:text-slate-300" />
+                  <Moon className="w-3 h-3 sm:w-4 sm:h-4 text-slate-700 dark:text-slate-300" />
                 ) : (
-                  <Sun className="w-4 h-4 text-slate-700 dark:text-slate-300" />
+                  <Sun className="w-3 h-3 sm:w-4 sm:h-4 text-slate-700 dark:text-slate-300" />
                 )}
               </button>
             )}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="mobile-menu-button flex items-center justify-center w-10 h-10 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-colors duration-200"
+              className="mobile-menu-button flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-colors duration-200 flex-shrink-0"
             >
               {isOpen ? (
-                <X className="w-6 h-6 text-slate-700 dark:text-slate-300" />
+                <X className="w-4 h-4 sm:w-6 sm:h-6 text-slate-700 dark:text-slate-300" />
               ) : (
-                <Menu className="w-6 h-6 text-slate-700 dark:text-slate-300" />
+                <Menu className="w-4 h-4 sm:w-6 sm:h-6 text-slate-700 dark:text-slate-300" />
               )}
             </button>
           </div>

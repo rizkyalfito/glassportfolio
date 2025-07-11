@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://rizkyalfito.vercel.app",
   },
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -40,11 +40,11 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable} ${poppins.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900 font-sans antialiased overflow-x-hidden transition-colors duration-500">
+      <body className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900 font-sans antialiased transition-colors duration-500">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <div className="relative flex min-h-screen flex-col">
+          <div className="relative flex min-h-screen flex-col w-full max-w-full overflow-x-hidden">
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 w-full max-w-full">{children}</main>
           </div>
           <Toaster />
         </ThemeProvider>
