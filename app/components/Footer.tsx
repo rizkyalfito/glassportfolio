@@ -60,7 +60,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
               <Code className="w-4 h-4" />
-              <span>Built with Next.js & Framer Motion</span>
+              <span>Built with Next.js</span>
             </div>
           </motion.div>
 
@@ -114,24 +114,6 @@ export default function Footer() {
                   <span>{info}</span>
                 </motion.li>
               ))}
-              <motion.li
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 1.3 }}
-                viewport={{ once: true }}
-                className="flex items-center space-x-2"
-              >
-                <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
-                <motion.a
-                  href="https://rizkyalfito.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
-                  whileHover={{ x: 5 }}
-                >
-                  rizkyalfito.vercel.app
-                </motion.a>
-              </motion.li>
             </ul>
           </motion.div>
         </motion.div>

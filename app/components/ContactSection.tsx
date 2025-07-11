@@ -125,17 +125,17 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           <motion.div
             className="inline-flex items-center space-x-2 px-4 py-2 bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 rounded-full shadow-lg mb-6"
-            initial={{ opacity: 0, scale: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            viewport={{ once: true, margin: "-50px" }}
           >
             <MessageCircle className="w-4 h-4 text-blue-500" />
             <span className="text-slate-700 dark:text-slate-300 font-medium text-sm">Let's Connect</span>
@@ -153,10 +153,10 @@ export default function ContactSection() {
           {/* Contact Information */}
           <motion.div
             className="space-y-8"
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, margin: "-50px" }}
           >
             <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl">
               <CardHeader>
@@ -171,19 +171,19 @@ export default function ContactSection() {
                     <motion.div
                       key={index}
                       className="group"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                      transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
                       viewport={{ once: true }}
-                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileHover={{ y: -1 }}
                     >
                       <Card className="p-4 bg-slate-50/50 dark:bg-slate-700/50 hover:bg-slate-100/50 dark:hover:bg-slate-600/50 transition-all duration-300 border-slate-200/50 dark:border-slate-600/50">
                         <CardContent className="p-0">
                           <div className="flex items-center space-x-3">
                             <motion.div
                               className={`p-3 rounded-xl bg-gradient-to-br ${info.gradient} text-white shadow-lg`}
-                              whileHover={{ rotate: 360, scale: 1.1 }}
-                              transition={{ duration: 0.5 }}
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.2 }}
                             >
                               {info.icon}
                             </motion.div>
@@ -204,9 +204,9 @@ export default function ContactSection() {
 
                 <motion.div
                   className="pt-6 border-t border-slate-200 dark:border-slate-700"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
                   viewport={{ once: true }}
                 >
                   <h3 className="text-lg font-poppins font-semibold text-slate-900 dark:text-white mb-4">
@@ -220,12 +220,12 @@ export default function ContactSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`p-4 bg-gradient-to-br ${social.gradient} text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300`}
-                        initial={{ opacity: 0, scale: 0 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.4, delay: 1.0 + index * 0.1 }}
+                        transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
                         viewport={{ once: true }}
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        whileTap={{ scale: 0.9 }}
+                        whileHover={{ scale: 1.05, y: -1 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         <social.icon className="w-5 h-5" />
                       </motion.a>
@@ -238,10 +238,10 @@ export default function ContactSection() {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
           >
             <Card className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl">
               <CardHeader>
@@ -254,9 +254,9 @@ export default function ContactSection() {
                 <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                   <motion.div
                     className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.6 }}
+                    transition={{ duration: 0.3, delay: 0.3 }}
                     viewport={{ once: true }}
                   >
                     <div className="space-y-2">
@@ -293,9 +293,9 @@ export default function ContactSection() {
 
                   <motion.div
                     className="space-y-2"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.7 }}
+                    transition={{ duration: 0.3, delay: 0.4 }}
                     viewport={{ once: true }}
                   >
                     <label htmlFor="subject" className="text-sm font-medium text-slate-700 dark:text-slate-300">
@@ -315,9 +315,9 @@ export default function ContactSection() {
 
                   <motion.div
                     className="space-y-2"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.8 }}
+                    transition={{ duration: 0.3, delay: 0.5 }}
                     viewport={{ once: true }}
                   >
                     <label htmlFor="message" className="text-sm font-medium text-slate-700 dark:text-slate-300">
@@ -336,12 +336,12 @@ export default function ContactSection() {
                   </motion.div>
 
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.9 }}
+                    transition={{ duration: 0.3, delay: 0.6 }}
                     viewport={{ once: true }}
                   >
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                       <Button
                         type="submit"
                         disabled={isSubmitting}

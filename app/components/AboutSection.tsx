@@ -102,7 +102,7 @@ export default function AboutSection() {
                     </motion.div>
                     <div>
                       <h3 className="text-2xl font-poppins font-bold text-slate-900 dark:text-white">
-                        Elite Developer
+                        Web Developer
                       </h3>
                       <p className="text-blue-600 dark:text-blue-400 font-medium">Information Systems Student</p>
                     </div>
