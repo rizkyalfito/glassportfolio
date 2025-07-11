@@ -55,7 +55,7 @@ export default function Footer() {
               Rizky Alfito Hadi
             </h3>
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
-              Elite web developer crafting exceptional digital experiences with modern technologies and innovative
+              Web developer crafting exceptional digital experiences with modern technologies and innovative
               solutions.
             </p>
             <div className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">

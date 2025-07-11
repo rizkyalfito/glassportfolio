@@ -97,7 +97,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                <h2 className="text-2xl sm:text-3xl font-semibold text-muted-foreground">Elite Web Developer</h2>
+                <h2 className="text-2xl sm:text-3xl font-semibold text-muted-foreground">Web Developer</h2>
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                   <span className="text-sm text-muted-foreground">Crafting digital experiences</span>

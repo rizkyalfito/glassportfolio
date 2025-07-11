@@ -21,6 +21,24 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element
+      if (isOpen && !target.closest('.mobile-menu') && !target.closest('.mobile-menu-button')) {
+        setIsOpen(false)
+      }
+    }
+    
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside)
+    }
+    
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [isOpen])
+
   const navItems = [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
@@ -63,7 +81,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <motion.div
-            className="flex items-center space-x-3"
+            className="flex items-center space-x-3 z-10"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -120,106 +138,44 @@ export default function Navbar() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 1.2 }}
               >
-                <Button
-                  variant="ghost"
-                  size="icon"
+                <button
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="relative overflow-hidden bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-all duration-300"
+                  className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-colors duration-200"
                 >
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      rotate: theme === "dark" ? 0 : 180,
-                      scale: theme === "dark" ? 1 : 0,
-                      opacity: theme === "dark" ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute"
-                  >
-                    <Moon className="h-4 w-4" />
-                  </motion.div>
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      rotate: theme === "light" ? 0 : -180,
-                      scale: theme === "light" ? 1 : 0,
-                      opacity: theme === "light" ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute"
-                  >
-                    <Sun className="h-4 w-4" />
-                  </motion.div>
-                </Button>
+                  {theme === "dark" ? (
+                    <Moon className="w-4 h-4 text-slate-700 dark:text-slate-300" />
+                  ) : (
+                    <Sun className="w-4 h-4 text-slate-700 dark:text-slate-300" />
+                  )}
+                </button>
               </motion.div>
             )}
           </motion.div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="md:hidden flex items-center gap-2 z-10">
             {mounted && (
-              <Button
-                variant="ghost"
-                size="icon"
+              <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50"
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-colors duration-200"
               >
-                <motion.div
-                  initial={false}
-                  animate={{
-                    rotate: theme === "dark" ? 0 : 180,
-                    scale: theme === "dark" ? 1 : 0,
-                    opacity: theme === "dark" ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute"
-                >
-                  <Moon className="h-4 w-4" />
-                </motion.div>
-                <motion.div
-                  initial={false}
-                  animate={{
-                    rotate: theme === "light" ? 0 : -180,
-                    scale: theme === "light" ? 1 : 0,
-                    opacity: theme === "light" ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute"
-                >
-                  <Sun className="h-4 w-4" />
-                </motion.div>
-              </Button>
-            )}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50"
-            >
-              <AnimatePresence mode="wait">
-                {isOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X className="h-6 w-6" />
-                  </motion.div>
+                {theme === "dark" ? (
+                  <Moon className="w-4 h-4 text-slate-700 dark:text-slate-300" />
                 ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu className="h-6 w-6" />
-                  </motion.div>
+                  <Sun className="w-4 h-4 text-slate-700 dark:text-slate-300" />
                 )}
-              </AnimatePresence>
-            </Button>
+              </button>
+            )}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="mobile-menu-button flex items-center justify-center w-10 h-10 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-colors duration-200"
+            >
+              {isOpen ? (
+                <X className="w-6 h-6 text-slate-700 dark:text-slate-300" />
+              ) : (
+                <Menu className="w-6 h-6 text-slate-700 dark:text-slate-300" />
+              )}
+            </button>
           </div>
         </div>
       </div>
@@ -228,7 +184,7 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-white/20 dark:border-slate-700/50 shadow-xl"
+            className="mobile-menu md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-white/20 dark:border-slate-700/50 shadow-xl"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -239,7 +195,7 @@ export default function Navbar() {
                 <motion.button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className="block w-full text-left text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium bg-transparent border-none cursor-pointer p-2 rounded-lg hover:bg-white/50 dark:hover:bg-slate-800/50"
+                  className="block w-full text-left text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium bg-transparent border-none cursor-pointer p-3 rounded-lg hover:bg-white/50 dark:hover:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}

@@ -3,88 +3,97 @@
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
-export default function FloatingElements() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+export default function RainDrops() {
+  const [rainDrops, setRainDrops] = useState<Array<{ id: number; x: number; delay: number; duration: number; opacity: number }>>([])
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener("mousemove", updateMousePosition)
-    return () => window.removeEventListener("mousemove", updateMousePosition)
+    // Generate rain drops with better opacity for light mode
+    const drops = Array.from({ length: 50 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100, // Random x position as percentage
+      delay: Math.random() * 5, // Random delay between 0-5 seconds
+      duration: 3 + Math.random() * 2, // Random duration between 3-5 seconds
+      opacity: 0.2 + Math.random() * 0.4, // Better opacity between 0.2-0.6
+    }))
+    setRainDrops(drops)
   }, [])
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-      {/* Simplified Background Gradient */}
+      {/* Enhanced Background Gradient */}
       <motion.div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-15 dark:opacity-10"
         animate={{
           background: [
-            "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
-            "radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 70%)",
-            "radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
+            "radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 60%)",
+            "radial-gradient(circle at 70% 60%, rgba(147, 51, 234, 0.12) 0%, transparent 60%)",
+            "radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.12) 0%, transparent 60%)",
           ],
         }}
         transition={{ 
-          duration: 30, 
+          duration: 25, 
           repeat: Infinity, 
           ease: "linear",
           repeatType: "reverse"
         }}
       />
 
-      {/* Reduced Floating Orbs - Only 3 instead of 8 */}
-      {[...Array(3)].map((_, i) => (
+      {/* Rain Drops with better visibility */}
+      {rainDrops.map((drop) => (
         <motion.div
-          key={i}
-          className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-white/10 to-blue-500/10 dark:from-white/5 dark:to-blue-400/5 backdrop-blur-sm border border-white/20 dark:border-white/10"
+          key={drop.id}
+          className="absolute w-px h-3 bg-gradient-to-b from-blue-500/60 to-blue-400/20 dark:from-blue-400/40 dark:to-transparent rounded-full"
+          initial={{
+            x: `${drop.x}%`,
+            y: "-20px",
+            opacity: 0,
+          }}
           animate={{
-            y: [0, -30, 0],
-            x: [0, 20, -20, 0],
-            scale: [1, 1.1, 1],
+            y: "100vh",
+            opacity: [0, drop.opacity, drop.opacity, 0],
           }}
           transition={{
-            duration: 20 + i * 5,
+            duration: drop.duration,
+            delay: drop.delay,
             repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 2,
+            ease: "linear",
+            repeatDelay: 1 + Math.random() * 2, // Random pause between loops
           }}
           style={{
-            left: `${20 + i * 30}%`,
-            top: `${30 + i * 20}%`,
+            left: `${drop.x}%`,
           }}
         />
       ))}
 
-      {/* Simplified Mouse Follower with reduced size and opacity */}
-      <motion.div
-        className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-blue-400/5 to-purple-400/5 dark:from-blue-300/3 dark:to-purple-300/3 blur-2xl"
-        animate={{
-          x: mousePosition.x - 128,
-          y: mousePosition.y - 128,
-        }}
-        transition={{ 
-          type: "spring", 
-          damping: 50, 
-          stiffness: 100,
-          mass: 0.5
-        }}
-      />
-
-      {/* Subtle Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.01] dark:opacity-[0.02]">
-        <div
-          className="w-full h-full"
+      {/* Enhanced ripple effects at bottom */}
+      {rainDrops.slice(0, 8).map((drop) => (
+        <motion.div
+          key={`ripple-${drop.id}`}
+          className="absolute bottom-0 w-1 h-1 rounded-full border border-blue-500/30 dark:border-blue-300/15"
+          initial={{
+            x: `${drop.x}%`,
+            scale: 0,
+            opacity: 0,
+          }}
+          animate={{
+            scale: [0, 1, 2],
+            opacity: [0, 0.5, 0],
+          }}
+          transition={{
+            duration: 1,
+            delay: drop.delay + drop.duration - 0.5, // Appear just before rain drop hits bottom
+            repeat: Infinity,
+            repeatDelay: drop.duration + 1 + Math.random() * 2,
+            ease: "easeOut",
+          }}
           style={{
-            backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: "80px 80px",
+            left: `${drop.x}%`,
           }}
         />
-      </div>
+      ))}
+
+      {/* Subtle overlay for depth with better light mode support */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-100/10 dark:to-slate-900/5" />
     </div>
   )
 }

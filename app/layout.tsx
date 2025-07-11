@@ -15,13 +15,13 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Rizky Alfito Hadi - Elite Web Developer",
+  title: "Rizky Alfito Hadi - Web Developer",
   description:
     "Professional portfolio showcasing cutting-edge web development with glassmorphism design, 3D elements, and modern architecture.",
   keywords: "web developer, glassmorphism, 3D design, Next.js, React, modern portfolio",
   authors: [{ name: "Rizky Alfito Hadi" }],
   openGraph: {
-    title: "Rizky Alfito Hadi - Elite Web Developer",
+    title: "Rizky Alfito Hadi - Web Developer",
     description: "Experience modern web development excellence",
     type: "website",
     url: "https://rizkyalfito.vercel.app",

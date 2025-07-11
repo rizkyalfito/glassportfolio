@@ -68,7 +68,7 @@ export default function HeroSection() {
                 transition={{ duration: 0.6, delay: 1.2 }}
               >
                 <h2 className="text-2xl sm:text-3xl font-poppins font-semibold text-slate-700 dark:text-slate-300">
-                  Elite Web Developer
+                  Web Developer
                 </h2>
                 <div className="flex items-center space-x-3">
                   <motion.div
